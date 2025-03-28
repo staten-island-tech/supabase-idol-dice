@@ -1,7 +1,9 @@
+<script setup>
+import TestDice from '../components/TestDice.vue'
+</script>
+
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+<TestDice/>
 </template>
 
 <style>
