@@ -1,6 +1,7 @@
 <template>
     <div>
-        <div @click="testClick" id="hihi">Hi</div>
+        <div @click="testClick(diceMulti)" id="hihi">Hi</div>
+        <div @click="upgradeClick"id="byebye">Bye</div>
     </div>
 </template>
 
@@ -10,18 +11,28 @@ function randomNumber(maximum) {
   return number;
 }
 let testCash = 0
+let diceMulti=1
 console.log(testCash)
-function testClick(){
+function testClick(diceMulti){
     let x = randomNumber(5)
-    testCash+= x
-    console.log(testCash)
+    console.log("Base "+ x)
+    let y = x*diceMulti
+    console.log("Multiplied " + y)
+    testCash+= y
+    console.log("Cash: "+testCash)
 }
-
+function upgradeClick(){
+    diceMulti +=1
+    console.log("Dice Multiplier: " + diceMulti)
+}
 
 </script>
 
 <style scoped>
 #hihi{
     background-color: blue;
+}
+#byebye{
+    background-color: red;
 }
 </style>
