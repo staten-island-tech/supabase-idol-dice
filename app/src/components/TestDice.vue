@@ -52,16 +52,14 @@ let testList = [
     {name: "1", level: "1"}
 ]
 function testClick(){
-    let diceMulti = testList[1].level
     let x = randomNumber(5)
     let y = x*diceMulti
     testCash+= y
     console.log("Cash: "+testCash)
-}
+};    let diceMulti = 0
 function upgradeClick(){
-    testList[1].level +=1
-    console.log("Dice Multiplier: " + testList[1].level)
-    if (testList[1].level == 10) {
+diceMulti =+1
+    if (diceMulti == 10) {
         console.log("hi")
     }
 }
