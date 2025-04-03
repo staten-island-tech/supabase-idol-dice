@@ -47,7 +47,9 @@ Base Functions
     </div>
 </template>
 
-<script>
+<script setup>
+let testCash = 0
+import { randomNumber } from '@/assets/keyFunctions'
 let testList = [
     {name: "1", level: "1"}
 ]
@@ -56,12 +58,12 @@ function testClick(){
     let y = x*diceMulti
     testCash+= y
     console.log("Cash: "+testCash)
-};    let diceMulti = 0
+};    let diceMulti = testList[0].level
+    let zy = Number(testList[0].level)
 function upgradeClick(){
-diceMulti =+1
-    if (diceMulti == 10) {
-        console.log("hi")
-    }
+    zy += 1
+    testList[0].level = zy
+    console.log(zy)
 }
 console.log(testList)
 </script>
