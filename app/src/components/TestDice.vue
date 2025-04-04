@@ -48,22 +48,28 @@ Base Functions
 </template>
 
 <script setup>
-let testCash = 0
 import { randomNumber } from '@/assets/keyFunctions'
+// The final version of this list must start with 1 dice and expand when a button is clicked to add a new div and dice into the list.
 let testList = [
     {name: "1", level: "1"}
 ]
+
+let diceMulti = testList[0].level // Right now, dice multiplier would affect all clicking on dice. It should only apply to the dice it is on.
+let testCash = 0 // Everyone starts with 0 cash
 function testClick(){
     let x = randomNumber(5)
     let y = x*diceMulti
     testCash+= y
     console.log("Cash: "+testCash)
-};    let diceMulti = testList[0].level
+    console.log("Level: " + testList[0].level)
+    console.log("Multi: " + diceMulti) // Basic click function concept
+};    
     let zy = Number(testList[0].level)
-function upgradeClick(){
+function upgradeClick(){ // Basic upgrade concept, not fully refined
     zy += 1
     testList[0].level = zy
     console.log(zy)
+    diceMulti = zy
 }
 console.log(testList)
 </script>
