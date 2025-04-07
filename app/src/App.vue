@@ -1,85 +1,51 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Sign In</title>
+      <!--<script src="https://zvtxgxkaxjwwmwmspdax.supabase.co"></script>-->
+    </head>
+    <body>
+      <h1>Sign In</h1>
+      <form id="signInForm">
+        <label for="email">Email:</label>
+        <input type="email" id="email" required />
+        <br />
+        <label for="password">Password:</label>
+        <input type="password" id="password" required />
+        <br />
+        <button type="submit">Sign In</button>
+      </form>
+    </body>
+  </html>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
+<script setup>
+const { createClient } = supabase
+const supabaseUrl = 'https://zvtxgxkaxjwwmwmspdax.supabase.co'
+const supabaseKey =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp2dHhneGtheGp3d213bXNwZGF4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDM2MTAxNzMsImV4cCI6MjA1OTE4NjE3M30.NAFPgReFK0mMUGMu5jcJGYLQOKVfu4ZUkxU-jBlMttI'
+const supabase = createClient(supabaseUrl, supabaseKey)
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
+document.getElementById('signInForm').addEventListener('submit', async (event) => {
+  event.preventDefault()
+  const email = document.getElementById('email').value
+  const password = document.getElementById('password').value
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
+  const { user, error } = await supabase.auth.signIn({
+    email,
+    password,
+  })
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+  if (error) {
+    console.error('Error signing in:', error.message)
+  } else {
+    console.log('User signed in:', user)
+    // Redirect or perform other actions after successful sign-in
   }
+})
+</script>
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
-</style>
+<style lang="css" scoped></style>

@@ -47,30 +47,31 @@ Base Functions
   </div>
 </template>
 
-<script>
-import { gsap } from 'gsap'
+<script setup>
+import { randomNumber } from '@/assets/keyFunctions'
+// The final version of this list must start with 1 dice and expand when a button is clicked to add a new div and dice into the list.
 let testList = [{ name: '1', level: '1' }]
+
+let diceMulti = testList[0].level // Right now, dice multiplier would affect all clicking on dice. It should only apply to the dice it is on.
+let testCash = 0 // Everyone starts with 0 cash
 function testClick() {
-  let diceMulti = testList[1].level
   let x = randomNumber(5)
   let y = x * diceMulti
   testCash += y
   console.log('Cash: ' + testCash)
+  console.log('Level: ' + testList[0].level)
+  console.log('Multi: ' + diceMulti) // Basic click function concept
 }
+let zy = Number(testList[0].level)
 function upgradeClick() {
-  testList[1].level += 1
-  console.log('Dice Multiplier: ' + testList[1].level)
-  if (testList[1].level == 10) {
-    console.log('hi')
-  }
+  // Basic upgrade concept, not fully refined
+  zy += 1
+  testList[0].level = zy
+  console.log(zy)
+  diceMulti = zy
 }
 console.log(testList)
-
-gsap.to(div, {
-  xPercent: 50,
-  yPercent: 50,
-}) //It works. Still trying to figure out how it works though.
-gsap.to('#hihi', { x: 200 })
+gsap.tl.to('div', { y: 50, duration: 1 })
 </script>
 
 <style scoped>
