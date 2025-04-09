@@ -9,9 +9,11 @@ import HelloWorld from './components/HelloWorld.vue'
        <HelloWorld msg="You did it!" />
  
        <nav>
-         <RouterLink to="/">Home</RouterLink>
-         <RouterLink to="/about">About</RouterLink>
-         <RouterLink to="/test">Testing Page</RouterLink>
+         <RouterLink to="/">Home (Login)</RouterLink> <p>--This is where the login page will be--</p>
+
+         <RouterLink to="/about">Dice Testing (Exporting)</RouterLink> <p>--Im testing the ability to export save data from the dice so it's levels and cash don't reset--</p>
+
+         <RouterLink to="/test">Supabase Testing (Importing)</RouterLink> <p>--Testing the ability to import data from a supabase table--</p>
        </nav>
      </div>
    </header>
@@ -38,7 +40,7 @@ import HelloWorld from './components/HelloWorld.vue'
  }
  
  nav a.router-link-exact-active {
-   color: var(--color-text);
+   color: magenta;
  }
  
  nav a.router-link-exact-active:hover {

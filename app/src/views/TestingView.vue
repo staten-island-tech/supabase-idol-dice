@@ -1,5 +1,5 @@
 <script setup>
-import TestDice from '../components/TestSupa.vue'
+import TestSupa from '../components/TestSupa.vue'
 </script>
 
 <template>
