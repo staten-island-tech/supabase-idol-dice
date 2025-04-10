@@ -5,7 +5,7 @@
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>Sign In</title>
-      <!--<script src="https://zvtxgxkaxjwwmwmspdax.supabase.co"></script>-->
+      <script src="https://zvtxgxkaxjwwmwmspdax.supabase.co"></script>
     </head>
     <body>
       <h1>Sign In</h1>
@@ -50,3 +50,17 @@ document.getElementById('signInForm').addEventListener('submit', async (event) =
 
 <style lang="css" scoped></style>
  -->
+<script setup>
+import { RouterLink, RouterView } from 'vue-router'
+</script>
+
+<template>
+  <div class="links">
+    <RouterLink to="/">Home</RouterLink>
+    <RouterLink to="/secret">Secret</RouterLink>
+    <RouterLink to="/login">Login</RouterLink>
+  </div>
+  <div class="content">
+    <RouterView />
+  </div>
+</template>
