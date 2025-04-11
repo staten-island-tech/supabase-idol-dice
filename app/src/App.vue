@@ -56,9 +56,11 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
   <div class="links">
-    <RouterLink to="/">Home</RouterLink>
-    <RouterLink to="/secret">Secret</RouterLink>
-    <RouterLink to="/login">Login</RouterLink>
+    <nav>
+      <RouterLink to="/">Home</RouterLink>
+      <RouterLink to="/secret">Secret</RouterLink>
+      <RouterLink to="/login">Login</RouterLink>
+    </nav>
   </div>
   <div class="content">
     <RouterView />
