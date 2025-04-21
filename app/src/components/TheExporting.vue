@@ -21,8 +21,8 @@
         else {
         // Insert data into Supabase
         const { error } = await supabase
-          .from('instruments') // Replace with your table name
-          .insert([{ name: inputData.value }]); // Replace with your column name
+          .from('instruments') //table name
+          .insert([{ name: inputData.value }]); //column name
   
         if (error) {
           console.error('Error inserting data:', error);
