@@ -52,6 +52,30 @@ document.getElementById('signInForm').addEventListener('submit', async (event) =
  -->
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+import { ref } from 'vue'
+import { superbase } from '../clients/supabase'
+
+let email = ref('')
+let password = ref('')
+
+async function createAccount() {
+  const { data, error } = await supabase.auth.signUp({
+    email: email.value
+    password: password.value
+  })
+  if (error){
+    console.log(error)
+  }
+  else{
+    console.log(data)
+  }
+}
+async function signIn(){
+  const { data, error } = await supabase.auth.signInWithPassword()
+}
+function logOut() {
+  console.log("Logout");
+}
 </script>
 
 <template>
