@@ -1,92 +1,87 @@
-<!-- <template>
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Sign In</title>
-      <script src="https://zvtxgxkaxjwwmwmspdax.supabase.co"></script>
-    </head>
-    <body>
-      <h1>Sign In</h1>
-      <form id="signInForm">
-        <label for="email">Email:</label>
-        <input type="email" id="email" required />
-        <br />
-        <label for="password">Password:</label>
-        <input type="password" id="password" required />
-        <br />
-        <button type="submit">Sign In</button>
-      </form>
-    </body>
-  </html>
-</template>
-
-<script setup>
-const { createClient } = supabase
-const supabaseUrl = 'https://zvtxgxkaxjwwmwmspdax.supabase.co'
-const supabaseKey =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp2dHhneGtheGp3d213bXNwZGF4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDM2MTAxNzMsImV4cCI6MjA1OTE4NjE3M30.NAFPgReFK0mMUGMu5jcJGYLQOKVfu4ZUkxU-jBlMttI'
-const supabase = createClient(supabaseUrl, supabaseKey)
-
-document.getElementById('signInForm').addEventListener('submit', async (event) => {
-  event.preventDefault()
-  const email = document.getElementById('email').value
-  const password = document.getElementById('password').value
-
-  const { user, error } = await supabase.auth.signIn({
-    email,
-    password,
-  })
-
-  if (error) {
-    console.error('Error signing in:', error.message)
-  } else {
-    console.log('User signed in:', user)
-    // Redirect or perform other actions after successful sign-in
-  }
-})
-</script>
-
-<style lang="css" scoped></style>
- -->
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import { ref } from 'vue'
-import { superbase } from '../clients/supabase'
-
-let email = ref('')
-let password = ref('')
-
-async function createAccount() {
-  const { data, error } = await supabase.auth.signUp({
-    email: email.value
-    password: password.value
-  })
-  if (error){
-    console.log(error)
-  }
-  else{
-    console.log(data)
-  }
-}
-async function signIn(){
-  const { data, error } = await supabase.auth.signInWithPassword()
-}
-function logOut() {
-  console.log("Logout");
-}
 </script>
-
 <template>
-  <div class="links">
-    <nav>
-      <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/secret">Secret</RouterLink>
-      <RouterLink to="/login">Login</RouterLink>
-    </nav>
-  </div>
-  <div class="content">
-    <RouterView />
-  </div>
+  <header>
+    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+    <div class="wrapper">
+      <nav>
+        <RouterLink to="/">Home (Login)</RouterLink>
+        <p>--This is where the login page will be--</p>
+
+        <RouterLink to="/about">Dice Testing (Exporting)</RouterLink>
+        <p>
+          --Im testing the ability to export save data from the dice so it's levels and cash don't
+          reset--
+        </p>
+
+        <RouterLink to="/test">Supabase Testing (Importing)</RouterLink>
+        <p>--Testing the ability to import data from a supabase table--</p>
+      </nav>
+    </div>
+  </header>
+
+  <RouterView />
 </template>
+
+<style scoped>
+header {
+  line-height: 1.5;
+  max-height: 100vh;
+}
+
+.logo {
+  display: block;
+  margin: 0 auto 2rem;
+}
+
+nav {
+  width: 100%;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+nav a.router-link-exact-active {
+  color: magenta;
+}
+
+nav a.router-link-exact-active:hover {
+  background-color: transparent;
+}
+
+nav a {
+  display: inline-block;
+  padding: 0 1rem;
+  border-left: 1px solid var(--color-border);
+}
+
+nav a:first-of-type {
+  border: 0;
+}
+
+@media (min-width: 1024px) {
+  header {
+    display: flex;
+    place-items: center;
+    padding-right: calc(var(--section-gap) / 2);
+  }
+  .logo {
+    margin: 0 2rem 0 0;
+  }
+  header .wrapper {
+    display: flex;
+    place-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  nav {
+    text-align: left;
+    margin-left: -1rem;
+    font-size: 1rem;
+
+    padding: 1rem 0;
+    margin-top: 1rem;
+  }
+}
+</style>

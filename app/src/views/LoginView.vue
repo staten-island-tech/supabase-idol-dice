@@ -1,40 +1,38 @@
-<!-- <template>
-  <h1>Form</h1>
-  <div class="inputContainer">
-    <label for="email">Email</label>
-    <input type="email" id="email" />
-    <label for="password">Password</label>
-    <input type="password" id="password" />
-  </div>
-  <div class="buttonContainer">
-    <button>Login</button>
-    <button>Logout</button>
-    <button>Sign up</button>
-  </div>
-</template> -->
-<template>
-  <div>
-    <!-- ✅ single root -->
-    <h1>Form</h1>
-    <div class="inputContainer">
-      <label for="email">Email</label>
-      <input type="email" id="email" />
+<script setup>
+import { RouterLink, RouterView } from 'vue-router'
+import { ref } from 'vue'
+//import { supabase } from "../clients.supabase"
 
-      <label for="password">Password</label>
-      <input type="password" id="password" />
-    </div>
-    <div class="buttonContainer">
-      <button type="submit">Login</button>
-      <button type="button">Logout</button>
-      <button type="button">Sign up</button>
-    </div>
+let email = ref('')
+let password = ref('')
+
+async function createAccount() {
+  const { data, error } = await supabase.auth.signUp({
+    email: email.value,
+    password: password.value,
+  })
+  if (error) {
+    console.log(error)
+  } else {
+    console.log(data)
+  }
+}
+async function signIn() {
+  const { data, error } = await supabase.auth.signInWithPassword()
+}
+function logOut() {
+  console.log('Logout')
+}
+</script>
+
+<template>
+  <div class="links">
+    <nav>
+      <RouterLink to="/">Home</RouterLink>
+      <RouterLink to="/login">Login</RouterLink>
+    </nav>
+  </div>
+  <div class="content">
+    <RouterView />
   </div>
 </template>
-
-<script setup></script>
-
-<style lang="css" scoped>
-.inputContainer {
-  display: flex;
-}
-</style>
