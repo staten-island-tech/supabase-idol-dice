@@ -5,7 +5,6 @@ import { supabase } from '../components/icons/lib/supabaseClient'
 
 let email = ref('')
 let password = ref('')
-let firstName = ref('')
 
 async function createAccount() {
   const { data, error } = await supabase.auth.signUp({
@@ -33,6 +32,7 @@ async function signIn() {
 function logOut() {
   console.log('Logout')
 }
+//<LoginView/>
 </script>
 
 <template>
@@ -41,16 +41,8 @@ function logOut() {
   <div class="inputContainer">
     <label for="email"> Email: </label>
     <input type="email" id="email" v-model="email" />
-  </div>
-
-  <div class="inputContainer">
     <label for="email"> Password: </label>
     <input type="password" id="password" v-model="password" />
-  </div>
-
-  <div class="inputContainer">
-    <label for="firstName"> First Name </label>
-    <input type="firstName" id="firstName" v-model="firstName" />
   </div>
 
   <div class="buttonContainer">
