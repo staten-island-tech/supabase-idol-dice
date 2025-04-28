@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <div @click="testClick" id="hihi">Hi</div>
-    <div @click="upgradeClick" id="byebye">Bye</div>
-  </div>
+    <div>
+        <div @click="testClick" id="hihi">Hi</div>
+        <div @click="upgradeClick" id="byebye">Bye</div>
+    </div>
 </template>
 
 <script setup>
