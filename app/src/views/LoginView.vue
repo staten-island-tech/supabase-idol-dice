@@ -30,9 +30,19 @@ async function signIn() {
   }
 }
 async function logOut() {
-  const { error } = await supabase.auth.signOut()
-  console.log(email)
+console.log("Before Log Out: "+email)
+  const { data, error } = await supabase.auth.signOut({
+    email: email.value,
+    password: password.value,
+  })
+  if (error) {
+    console.log(error)
+  } else {
+    console.log(data)
+  }
+  console.log("After: "+email)
 }
+
 //<LoginView/>
 </script>
 
