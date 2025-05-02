@@ -29,7 +29,8 @@ async function signIn() {
     console.log(data)
   }
 }
-function logOut() {
+async function logOut() {
+  const { error } = await supabase.auth.signOut()
   console.log('Logout')
 }
 //<LoginView/>
