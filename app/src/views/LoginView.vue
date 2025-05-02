@@ -31,16 +31,9 @@ async function signIn() {
 }
 async function logOut() {
 console.log(email)
-  const { data, error } = await supabase.auth.signOut({
-    email: email.value,
-    password: password.value,
-  })
-  if (error) {
-    console.log(error)
-  } else {
-    console.log(data)
-  }
-  console.log(email)
+const { error} = await supabase.auth.signOut();
+if (error) {console.log('Error signing out ' + error)}
+else {console.log("User signed out.")}
 }
 
 //<LoginView/>
