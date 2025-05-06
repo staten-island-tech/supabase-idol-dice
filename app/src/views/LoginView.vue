@@ -1,8 +1,8 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
+const router = useRouter()
 import { ref } from 'vue'
 import { supabase } from '../components/icons/lib/supabaseClient'
-
 let email = ref('')
 let password = ref('')
 
@@ -15,6 +15,7 @@ async function createAccount() {
     console.log(error)
   } else {
     console.log(data)
+    router.push({route:'/about'})
   }
 }
 
@@ -27,6 +28,8 @@ async function signIn() {
     console.log(error)
   } else {
     console.log(data)
+    router.push({path: '/about'})
+
   }
 }
 async function logOut() {
