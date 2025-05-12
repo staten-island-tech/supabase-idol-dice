@@ -3,12 +3,15 @@
         <div @click="testClick" id="hihi">Hi</div>
         <div @click="upgradeClick" id="byebye">Bye</div>
     </div>
+    <h1>Cash: {{ tesst }}</h1>
 </template>
 
 <script setup>
 import { randomNumber } from '@/assets/keyFunctions'
+import { ref } from 'vue'
 // The final version of this list must start with 1 dice and expand when a button is clicked to add a new div and dice into the list.
 let testList = [{ name: '1', level: '1' }]
+let tesst = ref('')
 
 let diceMulti = testList[0].level // Right now, dice multiplier would affect all clicking on dice. It should only apply to the dice it is on.
 let testCash = 0 // Everyone starts with 0 cash
@@ -19,6 +22,7 @@ function testClick() {
   console.log('Cash: ' + testCash)
   console.log('Level: ' + testList[0].level)
   console.log('Multi: ' + diceMulti) // Basic click function concept
+  tesst = testCash
 }
 </script>
 <style scoped>
