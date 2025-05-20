@@ -1,10 +1,12 @@
 <script setup>
-import { useRouter} from 'vue-router'
+import { useRouter } from 'vue-router'
 const router = useRouter()
 import { ref } from 'vue'
 import { supabase } from '../components/icons/lib/supabaseClient'
+import { useAuthStore } from '../stores/authenticate'
 let email = ref('')
 let password = ref('')
+const store = useAuthStore()
 
 async function createAccount() {
   const { data, error } = await supabase.auth.signUp({
@@ -15,7 +17,7 @@ async function createAccount() {
     console.log(error)
   } else {
     console.log(data)
-    router.push({route:'/about'})
+    router.push({ route: '/about' })
   }
 }
 
@@ -28,14 +30,17 @@ async function signIn() {
     console.log(error)
   } else {
     console.log(data)
-    router.push({path: '/about'})
-
+    // put store stuff here
+    router.push({ path: '/about' })
   }
 }
 async function logOut() {
-const { error} = await supabase.auth.signOut();
-if (error) {console.log('Error signing out ' + error)}
-else {console.log("User signed out.");}
+  const { error } = await supabase.auth.signOut()
+  if (error) {
+    console.log('Error signing out ' + error)
+  } else {
+    console.log('User signed out.')
+  }
 }
 
 //<LoginView/>
@@ -50,7 +55,7 @@ else {console.log("User signed out.");}
     <label for="email"> Password: </label>
     <input type="password" id="password" v-model="password" />
   </div>
-<!--idk why is this is red. tried asking chatgpt already.-->
+  <!--idk why is this is red. tried asking chatgpt already.-->
   <div class="buttonContainer">
     <button @click="createAccount()">Create</button>
     <button @click="signIn()">Login</button>
