@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-
+import { useAuthStore } from '@/stores/authenticate'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -16,6 +16,8 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue'),
+      meta: {
+        requiresAuth: true }
       
     },
     {
@@ -36,5 +38,21 @@ const router = createRouter({
     }
   ],
 })
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresAuth) {
+    const store = useAuthStore()
+    if (store.userData !== null) {
+      // User is authenticated, proceed to the route
+      next();
+    } else {
+      // User is not authenticated, redirect to login
+      next('/');
+    }
+  } else {
+    // Non-protected route, allow access
+    next();
+  }
+});
 
 export default router

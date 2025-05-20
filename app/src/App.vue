@@ -7,12 +7,12 @@ import { RouterLink, RouterView } from 'vue-router'
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
     <div class="wrapper">
        <nav>
-         <RouterLink to="/">Home (Import test)</RouterLink> <p>--This is where the login page will be--</p>
+         <RouterLink to="/">Home (Export)</RouterLink> <p>--This is where the login page will be--</p>
 
-         <RouterLink to="/about">Dice Testing (Exporting)</RouterLink> <p>--Im testing the ability to export save data from the dice so it's levels and cash don't reset--</p>
+         <RouterLink to="/about">Dice Testing (Protect)</RouterLink> <p>--Im testing the ability to export save data from the dice so it's levels and cash don't reset--</p>
 
-         <RouterLink to="/test">Supabase Testing (Importing)</RouterLink> <p>--Testing the ability to import data from a supabase table--</p>
-         <RouterLink to="/logtest">Supabase Login Test (Importing)</RouterLink> <p>--Testing the ability to log into an account--</p>
+         <RouterLink to="/test">Supabase Testing (Import)</RouterLink> <p>--Testing the ability to import data from a supabase table--</p>
+         <RouterLink to="/logtest">Supabase Login Test (Login)</RouterLink> <p>--Testing the ability to log into an account--</p>
        </nav>
      </div>
    </header>
