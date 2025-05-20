@@ -40,6 +40,7 @@ async function logOut() {
     console.log('Error signing out ' + error)
   } else {
     console.log('User signed out.')
+    store.userData = null
   }
 }
 function testData() {
