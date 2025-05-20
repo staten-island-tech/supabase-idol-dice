@@ -30,7 +30,7 @@ async function signIn() {
     console.log(error)
   } else {
     console.log(data)
-    // put store stuff here
+    store.userData = data
     router.push({ path: '/about' })
   }
 }
@@ -41,6 +41,9 @@ async function logOut() {
   } else {
     console.log('User signed out.')
   }
+}
+function testData() {
+  console.log(store.userData)
 }
 
 //<LoginView/>
@@ -60,6 +63,7 @@ async function logOut() {
     <button @click="createAccount()">Create</button>
     <button @click="signIn()">Login</button>
     <button @click="logOut()">Logout</button>
+    <button @click="testData()">User Data</button>
   </div>
 </template>
 
