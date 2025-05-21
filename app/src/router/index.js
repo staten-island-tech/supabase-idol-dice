@@ -35,6 +35,14 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/LoginView.vue'),
+    },
+    {
+      path: '/protection',
+      name: 'protection',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../components/ProtectedFile.vue'),
     }
   ],
 })
@@ -47,7 +55,7 @@ router.beforeEach((to, from, next) => {
       next();
     } else {
       // User is not authenticated, redirect to login
-      next('/');
+      next('/protection');
     }
   } else {
     // Non-protected route, allow access
