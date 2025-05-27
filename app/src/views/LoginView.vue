@@ -1,10 +1,12 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 import { ref } from 'vue'
 import { supabase } from '../components/icons/lib/supabaseClient'
-
+import { useAuthStore } from '../stores/authenticate'
 let email = ref('')
 let password = ref('')
+const store = useAuthStore()
 
 async function createAccount() {
   const { data, error } = await supabase.auth.signUp({
@@ -15,6 +17,7 @@ async function createAccount() {
     console.log(error)
   } else {
     console.log(data)
+    router.push({ route: '/about' })
   }
 }
 
@@ -27,11 +30,23 @@ async function signIn() {
     console.log(error)
   } else {
     console.log(data)
+    store.userData = data
+    router.push({ path: '/about' })
   }
 }
-function logOut() {
-  console.log('Logout')
+async function logOut() {
+  const { error } = await supabase.auth.signOut()
+  if (error) {
+    console.log('Error signing out ' + error)
+  } else {
+    console.log('User signed out.')
+    store.userData = null
+  }
 }
+function testData() {
+  console.log(store.userData)
+}
+
 //<LoginView/>
 </script>
 
@@ -44,11 +59,11 @@ function logOut() {
     <label for="email"> Password: </label>
     <input type="password" id="password" v-model="password" />
   </div>
-
   <div class="buttonContainer">
     <button @click="createAccount()">Create</button>
     <button @click="signIn()">Login</button>
     <button @click="logOut()">Logout</button>
+    <button @click="testData()">User Data</button>
   </div>
 </template>
 
