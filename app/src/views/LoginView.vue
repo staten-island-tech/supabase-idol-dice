@@ -44,7 +44,7 @@ function logOut() {
     <label for="email"> Password: </label>
     <input type="password" id="password" v-model="password" />
   </div>
-<!--idk why is this is red. tried asking chatgpt already.-->
+
   <div class="buttonContainer">
     <button @click="createAccount()">Create</button>
     <button @click="signIn()">Login</button>
