@@ -46,12 +46,11 @@ async function logOut() {
 function testData() {
   console.log(store.userData)
 }
-
-//<LoginView/>
 </script>
 
 <template>
-  <h1>Test Form</h1>
+  <!--<h1>Test Form</h1>-->
+  <div></div>
 
   <div class="inputContainer">
     <label for="email"> Email: </label>
@@ -68,7 +67,25 @@ function testData() {
 </template>
 
 <style>
+/* div {
+  width: 25px;
+  height: 1px;
+  background-color: black;
+} */
+h1 {
+  text-decoration: underline;
+}
+.inputContainer {
+  display: flex;
+}
 .buttonContainer {
   display: flex;
+}
+label {
+  text-decoration: underline;
+  box-shadow: 8px solid silver;
+}
+input {
+  box-shadow: 8px solid silver;
 }
 </style>
