@@ -8,7 +8,7 @@ export const useMoneyStore = defineStore('money', () => {
 
   let diceMultiDisplay = ref(1)
   let diceMulti = 1 // Right now, dice multiplier would affect all clicking on dice. It should only apply to the dice it is on.
-  let mathCash = 0 // Everyone starts with 0 cash
+  // base cash
   function testClick() {
     let x = randomNumber(5)
     displayRoll.value = x
@@ -24,3 +24,4 @@ export const useMoneyStore = defineStore('money', () => {
   }
   return { upgradeClick, testClick, displayCash, displayRoll, diceMultiDisplay }
 })
+
