@@ -21,14 +21,7 @@ async function createAccount() {
     router.push({ route: '/about' })
   }
 }
-/*
-    const {data, error} = await supabase.from('information').insert([
-      {
-        id: data.user,
-        money: 0
-      }]) 
-      If user table isn't there
-*/
+
 async function signIn() {
   const { data, error } = await supabase.auth.signInWithPassword({
     email: email.value,
@@ -39,11 +32,6 @@ async function signIn() {
   } else {
     console.log(data)
     store.userData = data
-    const {error} = await supabase.from('information').insert([
-      {
-        id: data.user,
-        money: 0
-      }])
     router.push({ path: '/about' })
   }
 }
