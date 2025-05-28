@@ -49,8 +49,8 @@ function testData() {
 </script>
 
 <template>
+  <!--svg goes in html-->
   <!--<h1>Test Form</h1>-->
-  <div></div>
 
   <div class="inputContainer">
     <label for="email"> Email: </label>
@@ -64,14 +64,40 @@ function testData() {
     <button @click="logOut()">Logout</button>
     <button @click="testData()">User Data</button>
   </div>
+  <div class="container">
+    <div id="bar1"></div>
+    <div id="bar2"></div>
+    <div id="bar3"></div>
+  </div>
 </template>
 
 <style>
-/* div {
-  width: 25px;
-  height: 1px;
-  background-color: black;
-} */
+.container {
+  display: inline-block;
+  cursor: pointer;
+}
+
+#bar1,
+#bar2,
+#bar3 {
+  width: 35px;
+  height: 5px;
+  background-color: #000000;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+.change #bar1 {
+  transform: translate(0, 11px) rotate(-45deg);
+}
+
+.change #bar2 {
+  opacity: 0;
+}
+
+.change #bar3 {
+  transform: translate(0, -11px) rotate(45deg);
+}
 h1 {
   text-decoration: underline;
 }
