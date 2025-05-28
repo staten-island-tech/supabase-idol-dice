@@ -19,7 +19,8 @@ async function createAccount() {
     console.log(data)
     const {data, error} = await supabase.from('information').insert([
       {
-        id
+        id: data.user,
+        money: 0
       }
     ])
     router.push({ route: '/about' })
