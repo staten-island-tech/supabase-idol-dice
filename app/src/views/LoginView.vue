@@ -49,6 +49,11 @@ function testData() {
 </script>
 
 <template>
+  <!-- <body>
+    <svg width="100" height="100">
+      <circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
+    </svg>
+  </body> -->
   <!--svg goes in html-->
   <!--<h1>Test Form</h1>-->
 
@@ -87,7 +92,7 @@ function testData() {
   transition: 0.4s;
 }
 
-.change #bar1 {
+/* .change #bar1 {
   transform: translate(0, 11px) rotate(-45deg);
 }
 
@@ -97,7 +102,7 @@ function testData() {
 
 .change #bar3 {
   transform: translate(0, -11px) rotate(45deg);
-}
+} */
 h1 {
   text-decoration: underline;
 }
