@@ -4,6 +4,7 @@ const router = useRouter()
 import { ref } from 'vue'
 import { supabase } from '../components/icons/lib/supabaseClient'
 import { useAuthStore } from '../stores/authenticate'
+import { LoadingScreenAnimation } from 'public'
 let email = ref('')
 let password = ref('')
 const store = useAuthStore()
@@ -49,13 +50,17 @@ function testData() {
 </script>
 
 <template>
-  <!-- <body>
-    <svg width="100" height="100">
+  <body>
+    <svg id="e68ez7sJ04d1">
       <circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
     </svg>
-  </body> -->
+  </body>
   <!--svg goes in html-->
-  <!--<h1>Test Form</h1>-->
+  <div id="svgContainer">
+    <object type="image/svg+xml" data="/public/LoadingScreenAnimation.svg">
+      <img src="/public/LoadingScreenAnimation.svg" />
+    </object>
+  </div>
 
   <div class="inputContainer">
     <label for="email"> Email: </label>
