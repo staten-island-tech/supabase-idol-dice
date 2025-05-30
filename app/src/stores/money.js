@@ -7,7 +7,7 @@ const store = useAuthStore()
 
 export const useMoneyStore = defineStore('money', () => {
   async function testTable() {
-    const {error} = await supabase.from('information').insert([
+    await supabase.from('information').insert([
    {
      name: store.userData.user.id,
      money: 0
