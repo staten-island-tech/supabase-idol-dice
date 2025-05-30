@@ -7,9 +7,9 @@ const store = useAuthStore()
 
 export const useMoneyStore = defineStore('money', () => {
   async function testTable() {
-    const {data, error} = await supabase.from('information').insert([
+    const {error} = await supabase.from('information').insert([
    {
-     id: store.userData.user.id,
+     name: store.userData.user.id,
      money: 0
    }])}
   let displayCash = ref(0)
@@ -19,7 +19,7 @@ export const useMoneyStore = defineStore('money', () => {
   let diceMulti = 1 // Right now, dice multiplier would affect all clicking on dice. It should only apply to the dice it is on.
   // base cash
   function testClick() {
-    // testTable() Issue
+     testTable() // Potential Issue
     console.log(store.userData.user.id)
     let x = randomNumber(5)
     displayRoll.value = x
