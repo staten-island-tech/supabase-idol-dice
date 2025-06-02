@@ -4,7 +4,7 @@ const router = useRouter()
 import { ref } from 'vue'
 import { supabase } from '../components/icons/lib/supabaseClient'
 import { useAuthStore } from '../stores/authenticate'
-import { LoadingScreenAnimation } from 'public'
+//import { LoadingScreenAnimation } from '../app/public/LoadingScreenAnimation'
 let email = ref('')
 let password = ref('')
 const store = useAuthStore()
@@ -50,15 +50,25 @@ function testData() {
 </script>
 
 <template>
-  <body>
-    <svg id="e68ez7sJ04d1">
-      <circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
-    </svg>
-  </body>
+  <div class="container">
+    <div id="bar1"></div>
+    <div id="bar2"></div>
+    <div id="bar3"></div>
+  </div>
+  <div class="buttonContainer">
+    <button @click="createAccount()">Create</button>
+    <button @click="signIn()">Login</button>
+    <button @click="logOut()">Logout</button>
+    <button @click="testData()">User Data</button>
+  </div>
+  <body></body>
   <!--svg goes in html-->
   <div id="svgContainer">
     <object type="image/svg+xml" data="/public/LoadingScreenAnimation.svg">
       <img src="/public/LoadingScreenAnimation.svg" />
+    </object>
+    <object type="image/svg+xml" data="/public/BuyAnimation.svg">
+      <img src="/public/BuyAnimation.svg" />
     </object>
   </div>
 
@@ -67,17 +77,6 @@ function testData() {
     <input type="email" id="email" v-model="email" />
     <label for="email"> Password: </label>
     <input type="password" id="password" v-model="password" />
-  </div>
-  <div class="buttonContainer">
-    <button @click="createAccount()">Create</button>
-    <button @click="signIn()">Login</button>
-    <button @click="logOut()">Logout</button>
-    <button @click="testData()">User Data</button>
-  </div>
-  <div class="container">
-    <div id="bar1"></div>
-    <div id="bar2"></div>
-    <div id="bar3"></div>
   </div>
 </template>
 
