@@ -4,6 +4,8 @@ const router = useRouter()
 import { ref } from 'vue'
 import { supabase } from '../components/icons/lib/supabaseClient'
 import { useAuthStore } from '../stores/authenticate'
+import { useSavingStore } from '@/stores/saveCharts'
+const store2 = useSavingStore()
 let email = ref('')
 let password = ref('')
 const store = useAuthStore()
@@ -17,6 +19,7 @@ async function createAccount() {
     console.log(error)
   } else {
     console.log(data)
+    store2.testTable(data.user.id, 0)
 
     router.push({ route: '/about' })
   }

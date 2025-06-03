@@ -1,13 +1,12 @@
 import { defineStore } from 'pinia'
-import { useAuthStore } from '@/stores/authenticate'
 import { supabase } from '../lib/supabaseClient.js'
-const store = useAuthStore()
+
 const updateChart = () => {}
 export const useSavingStore = defineStore('save', () => {
-  async function testTable(x) {
+  async function testTable(user, x) {
     const {error} = await supabase.from('information').insert([
    {
-     name: store.userData.user.id,
+     name: user,
      money: x
    }])
   if (error){console.log(error)}
