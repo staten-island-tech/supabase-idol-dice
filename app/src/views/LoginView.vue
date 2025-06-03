@@ -50,10 +50,19 @@ function testData() {
 </script>
 
 <template>
-  <div class="container">
-    <div id="bar1"></div>
-    <div id="bar2"></div>
-    <div id="bar3"></div>
+  <div class="dropdown">
+    <button onclick="myFunction()" class="dropbtn">Menu</button>
+    <div id="myDropdown" class="dropdown-content">
+      <a href="#">Home</a>
+      <a href="#">Store</a>
+      <a href="#">Link 3</a>
+    </div>
+  </div>
+  <div class="inputContainer">
+    <label for="email"> Email: </label>
+    <input type="email" id="email" v-model="email" />
+    <label for="email"> Password: </label>
+    <input type="password" id="password" v-model="password" />
   </div>
   <div class="buttonContainer">
     <button @click="createAccount()">Create</button>
@@ -61,8 +70,7 @@ function testData() {
     <button @click="logOut()">Logout</button>
     <button @click="testData()">User Data</button>
   </div>
-  <body></body>
-  <!--svg goes in html-->
+  <!-- <body></body> -->
   <div id="svgContainer">
     <object type="image/svg+xml" data="/public/LoadingScreenAnimation.svg">
       <img src="/public/LoadingScreenAnimation.svg" />
@@ -71,42 +79,24 @@ function testData() {
       <img src="/public/BuyAnimation.svg" />
     </object>
   </div>
-
-  <div class="inputContainer">
-    <label for="email"> Email: </label>
-    <input type="email" id="email" v-model="email" />
-    <label for="email"> Password: </label>
-    <input type="password" id="password" v-model="password" />
-  </div>
 </template>
 
 <style>
+.dropbtn {
+  background-color: #b6cad4;
+  color: rgb(0, 0, 0);
+  padding: 7px;
+  font-size: 8px;
+  cursor: pointer;
+}
+.dropdown {
+  position: absolute;
+  display: inline-block;
+}
 .container {
   display: inline-block;
   cursor: pointer;
 }
-
-#bar1,
-#bar2,
-#bar3 {
-  width: 35px;
-  height: 5px;
-  background-color: #000000;
-  margin: 6px 0;
-  transition: 0.4s;
-}
-
-/* .change #bar1 {
-  transform: translate(0, 11px) rotate(-45deg);
-}
-
-.change #bar2 {
-  opacity: 0;
-}
-
-.change #bar3 {
-  transform: translate(0, -11px) rotate(45deg);
-} */
 h1 {
   text-decoration: underline;
 }
