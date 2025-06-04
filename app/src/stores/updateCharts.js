@@ -27,5 +27,5 @@ export const useListStore = defineStore('list', () => {
 
 
     if (error){console.log(error)}}
-    return { potentialList }
+    return { potentialList, idHunter }
 })
