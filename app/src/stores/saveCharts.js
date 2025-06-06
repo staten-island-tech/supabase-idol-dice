@@ -3,12 +3,13 @@ import { supabase } from '../lib/supabaseClient.js'
 
 const updateChart = () => {}
 export const useSavingStore = defineStore('save', () => {
-  async function testTable(user, x) {
+  async function testTable(user, cash, prest) {
     const {error} = await supabase.from('information').insert([
    {
      name: user,
-     money: x
-   }])
+     money: cash,
+     prestige: prest,
+    }])
   if (error){console.log(error)}
     else {
   updateChart()}}

@@ -1,8 +1,10 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import { randomNumber } from '@/assets/keyFunctions'
-
-
+import { useListStore } from './updateCharts'
+const store = useListStore()
+const userListNumber = store.idHunter
+const userArray = store.potentialList
 export const useMoneyStore = defineStore('money', () => {
 
   let displayCash = ref(0)
@@ -18,6 +20,8 @@ export const useMoneyStore = defineStore('money', () => {
     displayCash.value += y
     console.log('Cash: ' + displayCash)
     console.log('Multi: ' + diceMulti) // Basic click function concept
+    console.log(userArray)
+    console.log(userListNumber)
   }
   function upgradeClick() {
     diceMulti += 1

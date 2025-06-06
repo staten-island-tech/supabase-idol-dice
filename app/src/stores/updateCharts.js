@@ -10,22 +10,19 @@ export const useListStore = defineStore('list', () => {
       const {data, error} = await supabase.from('information').select()
       userList.value = data
       console.log(userList.value)
-    if (error){console.log(error)}}
+    if (error){console.log(error)}
+     return userList}
+  // Get the array from Supabase
     async function idHunter() {
       const {data, error} = await supabase.from('information').select()
       userList.value = data
-      // For length of list, i = 0
-      // if name matches store.userData.user.id, save the value of I to use for updates
       let i = 0
       while (i < userList.value.length) {
         if (userList.value[i].name !== store.userData.user.id) {
             i++
         }
-        else return i;
-        
+        else return i; 
       }
-
-
     if (error){console.log(error)}}
-    return { potentialList, idHunter }
-})
+    // Get the id of the logged in
+    return { potentialList, idHunter }})
