@@ -21,6 +21,7 @@ export const useMoneyStore = defineStore('money', () => {
   // base cash
   ;(async () => {
     let result = await getMoney()
+    console.log(result)
     displayCash.value = result[0].money
     diceMulti.value = result[0].multiplier
     prestigeLevel.value = result[0].prestige
@@ -40,7 +41,7 @@ export const useMoneyStore = defineStore('money', () => {
     console.log('Multi: ' + diceMulti.value) // Basic click function concept
     const { error } = await supabase
       .from('information')
-      .update({ money: displayCash.value })
+      .update({ money: displayCash.value, multiplier: diceMulti.value, prestige: prestigeLevel.value})
       .eq('name', store2.userData.user.id)
     console.log(error)
   }
@@ -51,7 +52,7 @@ export const useMoneyStore = defineStore('money', () => {
       diceMulti.value += 1
       const { error } = await supabase
         .from('information')
-        .update({ multiplier: diceMulti.value }, { money: displayCash.value })
+        .update({ multiplier: diceMulti.value, money: displayCash.value })
         .eq('name', store2.userData.user.id)
       console.log(error)
     }
@@ -60,17 +61,15 @@ export const useMoneyStore = defineStore('money', () => {
   const ready = computed(() => displayCash.value > 1000) // This line is a chatGPT line made to test a feature.
   async function prestigeReady() {
     console.log('Ready')
-    diceMulti.value = 0
+    diceMulti.value = 1
     displayCash.value = 0
     prestigeLevel.value += 1
     const { error } = await supabase
       .from('information')
-      .update(
-        { multiplier: diceMulti.value },
-        { money: displayCash.value },
-        { prestige: prestigeLevel.value },
-      )
+      .update({ money: displayCash.value, multiplier: diceMulti.value, prestige: prestigeLevel.value})
       .eq('name', store2.userData.user.id)
+    console.log(error)
+      console.log(prestigeLevel.value)
   }
   return {
     upgradeClick,
