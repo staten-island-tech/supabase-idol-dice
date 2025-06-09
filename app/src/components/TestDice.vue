@@ -1,6 +1,8 @@
 <template>
   <div @click="store.testClick" id="hihi">Roll dice</div>
-  <div @click="store.upgradeClick" id="byebye">Increase multiplier</div>
+  <div @click="store.upgradeClick" id="byebye">
+    Increase multiplier (Cost: {{ store.diceMulti.valueOf() * 10 }})
+  </div>
   <h1>Cash: {{ store.displayCash }}</h1>
   <h1>You rolled a {{ store.displayRoll }}</h1>
   <h1>Your multiplier is {{ store.diceMulti }}</h1>
