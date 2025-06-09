@@ -1,9 +1,9 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import { randomNumber } from '@/assets/keyFunctions'
-import { useListStore } from './updateCharts'
 import { useAuthStore } from './authenticate'
 import { supabase } from '@/lib/supabaseClient'
+import { computed } from 'vue'
 //const store = useListStore()
 //const userListNumber = store.idHunter
 //const userArray = store.potentialList
@@ -15,6 +15,7 @@ export const useMoneyStore = defineStore('money', () => {
     return testMoney
   }
   let displayCash = ref(0)
+  let prestigeLevel = ref(0)
   let displayRoll = ref(0)
   let diceMulti = ref(1) // Right now, dice multiplier would affect all clicking on dice. It should only apply to the dice it is on.
   // base cash
@@ -22,6 +23,7 @@ export const useMoneyStore = defineStore('money', () => {
     let result = await getMoney()
     displayCash.value = result[0].money
     diceMulti.value = result[0].multiplier
+    prestigeLevel.value = result[0].prestige
   })()
 
   console.log(displayCash.value)
@@ -29,7 +31,11 @@ export const useMoneyStore = defineStore('money', () => {
     let x = randomNumber(5)
     displayRoll.value = x
     let y = x * diceMulti.value
-    displayCash.value += y
+    if (prestigeLevel.value > 0) {
+      displayCash.value += y * (1 + 0.15 * prestigeLevel.value)
+    } else {
+      displayCash.value += y
+    }
     console.log('Cash: ' + displayCash.value)
     console.log('Multi: ' + diceMulti.value) // Basic click function concept
     const { error } = await supabase
@@ -49,18 +55,27 @@ export const useMoneyStore = defineStore('money', () => {
         .eq('name', store2.userData.user.id)
       console.log(error)
     }
-    console.log(diceMulti.value)
-    let ready = false
-    if (displayCash.value > 1000) {
-      ready = true
-    }
-    function prestigeReady() {
-      console.log('Ready')
-    }
+  }
+  console.log(diceMulti.value)
+  const ready = computed(() => displayCash.value > 1000) // This line is a chatGPT line made to test a feature.
+  async function prestigeReady() {
+    console.log('Ready')
+    diceMulti.value = 0
+    displayCash.value = 0
+    prestigeLevel.value += 1
+    const { error } = await supabase
+      .from('information')
+      .update(
+        { multiplier: diceMulti.value },
+        { money: displayCash.value },
+        { prestige: prestigeLevel.value },
+      )
+      .eq('name', store2.userData.user.id)
   }
   return {
     upgradeClick,
     testClick,
+    prestigeReady,
     displayCash,
     displayRoll,
     displayCash,

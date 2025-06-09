@@ -7,6 +7,9 @@
   <h1>You rolled a {{ store.displayRoll }}</h1>
   <h1>Your multiplier is {{ store.diceMulti }}</h1>
   <br />
+  <div v-if="store.ready == true">
+    <button @click="store.prestigeReady">Prestige</button>
+  </div>
   <!--Upgrade click must increase global multiplier and subtract cash-->
 </template>
 
