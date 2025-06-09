@@ -1,10 +1,9 @@
-<template>
-  <div></div>
-  <object type="image/svg+xml" data="/public/BuyAnimation.svg">
-    <img src="/public/BuyAnimation.svg" />
-  </object>
-</template>
+<script setup>
+import ThePrestige from '../components/ThePrestige.vue'
+</script>
 
-<script lang></script>
+<template>
+  <ThePrestige />
+</template>
 
 <style scoped></style>

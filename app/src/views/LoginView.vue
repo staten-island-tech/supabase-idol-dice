@@ -48,34 +48,35 @@ async function logOut() {
 function testData() {
   console.log(store.userData)
 }
+function stuff() {}
 </script>
 
 <template>
+  <div class="dropdown">
+    <button onclick="stuff()" class="dropbtn">Menu</button>
+    <div id="myDropdown" class="dropdown-content">
+      <a href="#">Home</a>
+      <a href="#">Store</a>
+      <a href="#">Play</a>
+      <a href="#">Prestige</a>
+    </div>
+    <RouterLink to="/ThePrestige"></RouterLink>
+  </div>
+  <div class="inputContainer">
+    <label for="email"> Email: </label>
+    <input type="email" id="email" v-model="email" />
+    <label for="email"> Password: </label>
+    <input type="password" id="password" v-model="password" />
+  </div>
+  <div class="buttonContainer">
+    <button @click="createAccount()">Create</button>
+    <button @click="signIn()">Login</button>
+    <button @click="logOut()">Logout</button>
+    <button @click="testData()">User Data</button>
+  </div>
   <body>
-    <div class="dropdown">
-      <button onclick="myFunction()" class="dropbtn">Menu</button>
-      <div id="myDropdown" class="dropdown-content">
-        <a href="#">Home</a>
-        <a href="#">Store</a>
-        <a href="#">Play</a>
-        <a href="#">Prestige</a>
-      </div>
-      <RouterLink to="/PrestigeView"></RouterLink>
-    </div>
-    <div class="inputContainer">
-      <label for="email"> Email: </label>
-      <input type="email" id="email" v-model="email" />
-      <label for="email"> Password: </label>
-      <input type="password" id="password" v-model="password" />
-    </div>
-    <div class="buttonContainer">
-      <button @click="createAccount()">Create</button>
-      <button @click="signIn()">Login</button>
-      <button @click="logOut()">Logout</button>
-      <button @click="testData()">User Data</button>
-    </div>
-    <!-- <body></body> -->
     <div id="svgContainer">
+      <!--for some reason when I delete one of them, the other one also gets deleted...-->
       <object type="image/svg+xml" data="/public/LoadingScreenAnimation.svg">
         <img src="/public/LoadingScreenAnimation.svg" />
       </object>
@@ -96,9 +97,6 @@ body {
   padding: 7px;
   font-size: 8px;
   cursor: pointer;
-  display: flex;
-}
-.dropdown {
   display: flex;
 }
 .container {
