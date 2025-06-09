@@ -47,12 +47,12 @@ async function logOut() {
   } else {
     console.log('User signed out.')
     store.userData = null
+    location.reload()
   }
 }
 function testData() {
   console.log(store.userData)
 }
-
 
 //<LoginView/>
 </script>
