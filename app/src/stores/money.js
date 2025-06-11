@@ -7,6 +7,13 @@ import { computed } from 'vue'
 //const store = useListStore()
 //const userListNumber = store.idHunter
 //const userArray = store.potentialList
+
+let diceArray = ref([
+  {
+    baseValue: 1,
+    img: 'https://firstbenefits.org/wp-content/uploads/2017/10/placeholder.png',
+  },
+])
 const store2 = useAuthStore()
 export const useMoneyStore = defineStore('money', () => {
   async function getMoney() {
@@ -25,6 +32,7 @@ export const useMoneyStore = defineStore('money', () => {
     displayCash.value = result[0].money
     diceMulti.value = result[0].multiplier
     prestigeLevel.value = result[0].prestige
+    diceArray.value = result[0].dice
   })()
 
   console.log(displayCash.value)
@@ -41,7 +49,11 @@ export const useMoneyStore = defineStore('money', () => {
     console.log('Multi: ' + diceMulti.value) // Basic click function concept
     const { error } = await supabase
       .from('information')
-      .update({ money: displayCash.value, multiplier: diceMulti.value, prestige: prestigeLevel.value})
+      .update({
+        money: displayCash.value,
+        multiplier: diceMulti.value,
+        prestige: prestigeLevel.value,
+      })
       .eq('name', store2.userData.user.id)
     console.log(error)
   }
@@ -57,7 +69,23 @@ export const useMoneyStore = defineStore('money', () => {
       console.log(error)
     }
   }
-  console.log(diceMulti.value)
+  async function buyDice() {
+    if (diceArray.value.length < 6) {
+      let newValue = diceArray.value.length * 2
+      diceArray.value.push({
+        baseValue: newValue,
+        img: 'https://firstbenefits.org/wp-content/uploads/2017/10/placeholder.png',
+      })
+
+      const { error } = await supabase
+        .from('information')
+        .update({ dice: diceArray.value })
+        .eq('name', store2.userData.user.id)
+      console.log(error)
+      console.log(diceMulti.value)
+    } else console.log('Limit Reached')
+  }
+
   const ready = computed(() => displayCash.value > 1000) // This line is a chatGPT line made to test a feature.
   async function prestigeReady() {
     console.log('Ready')
@@ -66,19 +94,25 @@ export const useMoneyStore = defineStore('money', () => {
     prestigeLevel.value += 1
     const { error } = await supabase
       .from('information')
-      .update({ money: displayCash.value, multiplier: diceMulti.value, prestige: prestigeLevel.value})
+      .update({
+        money: displayCash.value,
+        multiplier: diceMulti.value,
+        prestige: prestigeLevel.value,
+      })
       .eq('name', store2.userData.user.id)
     console.log(error)
-      console.log(prestigeLevel.value)
+    console.log(prestigeLevel.value)
   }
   return {
     upgradeClick,
     testClick,
     prestigeReady,
+    buyDice,
     displayCash,
     displayRoll,
     displayCash,
     diceMulti,
     ready,
+    diceArray,
   }
 })
