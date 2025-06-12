@@ -81,34 +81,43 @@ export const useMoneyStore = defineStore('money', () => {
     }
   }
   async function buyDice() {
-    if (diceArray.value.length < 6) {
-      let newValue = diceArray.value.length * 2
+    let newValue = diceArray.value.length * 2
+    let cost = 10 * newValue
+    if (diceArray.value.length < 6 && displayCash.value >= cost) {
       diceArray.value.push({
         baseValue: newValue,
         img: 'https://firstbenefits.org/wp-content/uploads/2017/10/placeholder.png',
       })
+      displayCash.value = roundNumber(displayCash.value - cost, 1)
 
       const { error } = await supabase
         .from('information')
-        .update({ dice: diceArray.value })
+        .update({ dice: diceArray.value, money: displayCash.value })
         .eq('name', store2.userData.user.id)
       console.log(error)
       console.log(diceMulti.value)
-    } else console.log('Limit Reached')
+    } else console.log('Limit Reached (6) or Not Enough Cash')
   }
 
-  const ready = computed(() => displayCash.value > 1000) // This line is a chatGPT line made to test a feature.
+  const ready = computed(() => displayCash.value > 1000 * prestigeLevel.value) // This line is a modified chatGPT line made to test a feature. I only understand it partially.
   async function prestigeReady() {
     console.log('Ready')
     diceMulti.value = 1
     displayCash.value = 0
     prestigeLevel.value += 1
+    diceArray.value = [
+      {
+        baseValue: 1,
+        img: 'https://firstbenefits.org/wp-content/uploads/2017/10/placeholder.png',
+      },
+    ]
     const { error } = await supabase
       .from('information')
       .update({
         money: roundNumber(displayCash.value, 1),
         multiplier: diceMulti.value,
         prestige: prestigeLevel.value,
+        dice: diceArray.value,
       })
       .eq('name', store2.userData.user.id)
     console.log(error)
