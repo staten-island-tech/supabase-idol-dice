@@ -4,8 +4,6 @@ const router = useRouter()
 import { ref } from 'vue'
 import { supabase } from '../components/icons/lib/supabaseClient'
 import { useAuthStore } from '../stores/authenticate'
-import { RouterLink, RouterView } from 'vue-router'
-//import { LoadingScreenAnimation } from '../app/public/LoadingScreenAnimation'
 import { useSavingStore } from '@/stores/saveCharts'
 import { useListStore } from '@/stores/updateCharts'
 const store2 = useSavingStore()
@@ -49,31 +47,26 @@ async function logOut() {
   } else {
     console.log('User signed out.')
     store.userData = null
-    location.reload()
   }
 }
 function testData() {
   console.log(store.userData)
 }
+
+
+//<LoginView/>
 </script>
 
 <template>
-  <div class="dropdown">
-    <button onclick="stuff()" class="dropbtn">Menu</button>
-    <div id="myDropdown" class="dropdown-content">
-      <a href="#">Home</a>
-      <a href="#">Store</a>
-      <a href="#">Play</a>
-      <a href="#">Prestige</a>
-    </div>
-    <RouterLink to="/ThePrestige"></RouterLink>
-  </div>
+  <h1>Test Form</h1>
+
   <div class="inputContainer">
     <label for="email"> Email: </label>
     <input type="email" id="email" v-model="email" />
     <label for="email"> Password: </label>
     <input type="password" id="password" v-model="password" />
   </div>
+  <!--idk why is this is red. tried asking chatgpt already.-->
   <div class="buttonContainer">
     <button @click="createAccount()">Create</button>
     <button @click="signIn()">Login</button>
@@ -81,50 +74,10 @@ function testData() {
     <button @click="testData()">User Data</button>
     <button @click="store3.idHunter()">Id Hunt</button>
   </div>
-  <body>
-    <div id="svgContainer">
-      <!--for some reason when I delete one of them, the other one also gets deleted...-->
-      <object type="image/svg+xml" data="/public/LoadingScreenAnimation.svg">
-        <img src="/public/LoadingScreenAnimation.svg" />
-      </object>
-      <object type="image/svg+xml" data="/public/BuyAnimation.svg">
-        <img src="/public/BuyAnimation.svg" />
-      </object>
-    </div>
-  </body>
 </template>
 
 <style>
-body {
-  display: flex;
-}
-.dropbtn {
-  background-color: #b6cad4;
-  color: rgb(0, 0, 0);
-  padding: 7px;
-  font-size: 8px;
-  cursor: pointer;
-  display: flex;
-}
-.container {
-  display: flex;
-  cursor: pointer;
-}
-h1 {
-  text-decoration: underline;
-  display: flex;
-}
-.inputContainer {
-  display: flex;
-}
 .buttonContainer {
   display: flex;
-}
-label {
-  text-decoration: underline;
-  box-shadow: 8px solid silver;
-}
-input {
-  box-shadow: 8px solid silver;
 }
 </style>

@@ -10,3 +10,7 @@ export function takeToBuy(){
 export function takeToPrest(){
   router.push({ path: '/prestanim'})
 }
+export function roundNumber(number, place) {
+  const returner = parseFloat(parseFloat(number).toFixed(place))
+  return returner
+}
