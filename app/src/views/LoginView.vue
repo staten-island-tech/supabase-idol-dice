@@ -58,16 +58,7 @@ function testData() {
 </script>
 
 <template>
-  <div class="dropdown">
-    <button onclick="stuff()" class="dropbtn">Menu</button>
-    <div id="myDropdown" class="dropdown-content">
-      <a href="#">Home</a>
-      <a href="#">Store</a>
-      <a href="#">Play</a>
-      <a href="#">Prestige</a>
-    </div>
-    <RouterLink to="/ThePrestige"></RouterLink>
-  </div>
+  <RouterLink to="/ThePrestige"></RouterLink>
   <div class="inputContainer">
     <label for="email"> Email: </label>
     <input type="email" id="email" v-model="email" />
@@ -82,15 +73,13 @@ function testData() {
     <button @click="store3.idHunter()">Id Hunt</button>
   </div>
   <body>
-    <div id="svgContainer">
-      <!--for some reason when I delete one of them, the other one also gets deleted...-->
-      <object type="image/svg+xml" data="/public/LoadingScreenAnimation.svg">
-        <img src="/public/LoadingScreenAnimation.svg" />
-      </object>
-      <object type="image/svg+xml" data="/public/BuyAnimation.svg">
-        <img src="/public/BuyAnimation.svg" />
-      </object>
-    </div>
+    <!--for some reason when I delete one of them, the other one also gets deleted...-->
+    <!-- <object type="image/svg+xml" data="/public/LoadingScreenAnimation.svg">
+      <img src="/public/LoadingScreenAnimation.svg" />
+    </object> -->
+    <object type="image/svg+xml" data="/public/BuyAnimation.svg">
+      <img src="/public/BuyAnimation.svg" />
+    </object>
   </body>
 </template>
 
@@ -108,7 +97,6 @@ body {
 }
 .container {
   display: flex;
-  cursor: pointer;
 }
 h1 {
   text-decoration: underline;
@@ -126,5 +114,10 @@ label {
 }
 input {
   box-shadow: 8px solid silver;
+}
+button {
+  display: flex;
+  cursor: pointer;
+  box-shadow: 8px solid rgb(156, 156, 193);
 }
 </style>
