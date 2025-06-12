@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import { randomNumber } from '@/assets/keyFunctions'
+import { randomNumber, roundNumber } from '@/assets/keyFunctions'
 import { useAuthStore } from './authenticate'
 import { supabase } from '@/lib/supabaseClient'
 import { computed } from 'vue'
@@ -29,7 +29,7 @@ export const useMoneyStore = defineStore('money', () => {
   ;(async () => {
     let result = await getMoney()
     console.log(result)
-    displayCash.value = result[0].money
+    displayCash.value = roundNumber(result[0].money, 1)
     diceMulti.value = result[0].multiplier
     prestigeLevel.value = result[0].prestige
     diceArray.value = result[0].dice
@@ -51,14 +51,17 @@ export const useMoneyStore = defineStore('money', () => {
     console.log('Final money count: ' + calcMoney)
 
     if (prestigeLevel.value > 0) {
-      displayCash.value += calcMoney * (1 + 0.15 * prestigeLevel.value)
+      displayCash.value = roundNumber(
+        calcMoney * (1 + 0.15 * prestigeLevel.value) + displayCash.value,
+        1,
+      )
     } else {
-      displayCash.value += calcMoney
+      displayCash.value = roundNumber(displayCash.value + calcMoney, 1)
     }
     const { error } = await supabase
       .from('information')
       .update({
-        money: displayCash.value.toFixed(1),
+        money: roundNumber(displayCash.value, 1),
         multiplier: diceMulti.value,
         prestige: prestigeLevel.value,
       })
@@ -72,7 +75,7 @@ export const useMoneyStore = defineStore('money', () => {
       diceMulti.value += 1
       const { error } = await supabase
         .from('information')
-        .update({ multiplier: diceMulti.value, money: displayCash.value.toFixed(1) })
+        .update({ multiplier: diceMulti.value, money: roundNumber(displayCash.value, 1) })
         .eq('name', store2.userData.user.id)
       console.log(error)
     }
@@ -103,7 +106,7 @@ export const useMoneyStore = defineStore('money', () => {
     const { error } = await supabase
       .from('information')
       .update({
-        money: displayCash.value.toFixed(1),
+        money: roundNumber(displayCash.value, 1),
         multiplier: diceMulti.value,
         prestige: prestigeLevel.value,
       })
