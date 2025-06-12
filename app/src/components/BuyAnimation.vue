@@ -11,8 +11,8 @@
 import { useRouter } from 'vue-router'
 const router = useRouter()
 setTimeout(() => {
-   router.push()
-}, timeout);
+   router.push({ path: '/about'})
+}, 8000);
 </script>
 
 <style lang="scss" scoped>
