@@ -37,20 +37,28 @@ export const useMoneyStore = defineStore('money', () => {
 
   console.log(displayCash.value)
   async function testClick() {
-    let x = randomNumber(5)
+    /*    let x = randomNumber(5)
     displayRoll.value = x
-    let y = x * diceMulti.value
+    let y = x * diceMulti.value*/
+    let calcMoney = 0
+    diceArray.value.forEach((dice) => {
+      let random = randomNumber(5)
+      console.log('Random number: ' + random)
+      calcMoney += random * dice.baseValue
+      console.log('Money times base: ' + calcMoney)
+    })
+    calcMoney = calcMoney * diceMulti.value
+    console.log('Final money count: ' + calcMoney)
+
     if (prestigeLevel.value > 0) {
-      displayCash.value += y * (1 + 0.15 * prestigeLevel.value)
+      displayCash.value += calcMoney * (1 + 0.15 * prestigeLevel.value)
     } else {
-      displayCash.value += y
+      displayCash.value += calcMoney
     }
-    console.log('Cash: ' + displayCash.value)
-    console.log('Multi: ' + diceMulti.value) // Basic click function concept
     const { error } = await supabase
       .from('information')
       .update({
-        money: displayCash.value,
+        money: displayCash.value.toFixed(1),
         multiplier: diceMulti.value,
         prestige: prestigeLevel.value,
       })
@@ -64,7 +72,7 @@ export const useMoneyStore = defineStore('money', () => {
       diceMulti.value += 1
       const { error } = await supabase
         .from('information')
-        .update({ multiplier: diceMulti.value, money: displayCash.value })
+        .update({ multiplier: diceMulti.value, money: displayCash.value.toFixed(1) })
         .eq('name', store2.userData.user.id)
       console.log(error)
     }
@@ -95,7 +103,7 @@ export const useMoneyStore = defineStore('money', () => {
     const { error } = await supabase
       .from('information')
       .update({
-        money: displayCash.value,
+        money: displayCash.value.toFixed(1),
         multiplier: diceMulti.value,
         prestige: prestigeLevel.value,
       })
