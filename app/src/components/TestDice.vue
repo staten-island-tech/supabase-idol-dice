@@ -11,7 +11,7 @@
   <div v-if="store.ready == true">
     <button @click="store.prestigeReady">Prestige</button>
   </div>
-  <div v-for="dice in store.diceArray">
+  <div class="diceArea"v-for="dice in store.diceArray">
     <div class="dice-body">
       <img class="dice-img" :src="dice.img" alt="dice image" />
       <p>Base Value: {{ dice.baseValue }}</p>
@@ -46,7 +46,14 @@ const store = useMoneyStore()
   height: 100px;
   object-fit: contain;
 }
-
+.diceArea{
+    display: flex;
+    margin:5px auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
 @media screen and (max-width: 430px) and (max-height: 940px) {
   .dice-img {
     width: 80px;

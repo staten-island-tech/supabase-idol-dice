@@ -1,4 +1,6 @@
 import { ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+const router = useRouter()
 import { defineStore } from 'pinia'
 import { randomNumber, roundNumber } from '@/assets/keyFunctions'
 import { useAuthStore } from './authenticate'
@@ -36,13 +38,19 @@ export const useMoneyStore = defineStore('money', () => {
   })()
 
   console.log(displayCash.value)
+function sorter(number){
+  if (number == 1){console.log("1")}
+  if (number == 1){console.log("2")}
+  if (number == 1){console.log("3")}
+  if (number == 1){console.log("4")}
+  if (number == 1){console.log("5")}
+}
   async function testClick() {
-    /*    let x = randomNumber(5)
-    displayRoll.value = x
-    let y = x * diceMulti.value*/
-    let calcMoney = 0
+    let calcMoney = 0 //FOR EACH DICE STUFF IS HERE YOU BLIND BAT
     diceArray.value.forEach((dice) => {
+      console.log(dice.img)
       let random = randomNumber(5)
+      sorter(random)
       console.log('Random number: ' + random)
       calcMoney += random * dice.baseValue
       console.log('Money times base: ' + calcMoney)
@@ -96,6 +104,7 @@ export const useMoneyStore = defineStore('money', () => {
         .eq('name', store2.userData.user.id)
       console.log(error)
       console.log(diceMulti.value)
+//      router.push({ path: '/buyanim'})// This line is bugged for some reason. Focus on other CSS for now
     } else console.log('Limit Reached (6) or Not Enough Cash')
   }
 
