@@ -1,10 +1,5 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import { useRouter } from 'vue-router'
-const router = useRouter()
-function testBuy(){
-  router.push({ path: '/buyanim'})
-}
  </script>
  <template>
   <header>
@@ -20,7 +15,6 @@ function testBuy(){
        </nav>
      </div>
    </header>
-   <button @click="testBuy">TestBuy</button>
  
    <RouterView />
  </template>
