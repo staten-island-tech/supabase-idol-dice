@@ -1,13 +1,18 @@
 <template>
-    <div>
-        <h1>This page will have the prestige animation</h1>
-    </div>
+  <div id="svgContainer">
+    <!--rip-->
+    <object type="image/svg+xml" data="/public/PrestigeTest.svg">
+      <img src="/public/PrestigeTest.svg" alt="An animation showing the user prestiging." />
+    </object>
+  </div>
 </template>
 
 <script setup>
-// This script will have the timer
+import { useRouter } from 'vue-router'
+const router = useRouter()
+setTimeout(() => {
+  router.push({ path: '/about' })
+}, 3200)
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

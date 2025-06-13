@@ -1,6 +1,5 @@
 import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-const router = useRouter()
 import { defineStore } from 'pinia'
 import { randomNumber, roundNumber } from '@/assets/keyFunctions'
 import { useAuthStore } from './authenticate'
@@ -18,6 +17,7 @@ let diceArray = ref([
 ])
 const store2 = useAuthStore()
 export const useMoneyStore = defineStore('money', () => {
+  const router = useRouter()
   async function getMoney() {
     const { data } = await supabase.from('information').select().eq('name', store2.userData.user.id)
     let testMoney = data
@@ -38,13 +38,23 @@ export const useMoneyStore = defineStore('money', () => {
   })()
 
   console.log(displayCash.value)
-function sorter(number){
-  if (number == 1){console.log("1")}
-  if (number == 1){console.log("2")}
-  if (number == 1){console.log("3")}
-  if (number == 1){console.log("4")}
-  if (number == 1){console.log("5")}
-}
+  function sorter(number) {
+    if (number == 1) {
+      console.log('1')
+    }
+    if (number == 1) {
+      console.log('2')
+    }
+    if (number == 1) {
+      console.log('3')
+    }
+    if (number == 1) {
+      console.log('4')
+    }
+    if (number == 1) {
+      console.log('5')
+    }
+  }
   async function testClick() {
     let calcMoney = 0 //FOR EACH DICE STUFF IS HERE YOU BLIND BAT
     diceArray.value.forEach((dice) => {
@@ -104,7 +114,7 @@ function sorter(number){
         .eq('name', store2.userData.user.id)
       console.log(error)
       console.log(diceMulti.value)
-//      router.push({ path: '/buyanim'})// This line is bugged for some reason. Focus on other CSS for now
+      router.push({ path: '/buyanim' }) // This line is bugged for some reason. Focus on other CSS for now
     } else console.log('Limit Reached (6) or Not Enough Cash')
   }
 
@@ -131,6 +141,7 @@ function sorter(number){
       .eq('name', store2.userData.user.id)
     console.log(error)
     console.log(prestigeLevel.value)
+    router.push({ path: '/prestanim' })
   }
   return {
     upgradeClick,
