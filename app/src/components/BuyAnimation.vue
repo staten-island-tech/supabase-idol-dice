@@ -10,9 +10,9 @@
 <script setup>
 import { useRouter } from 'vue-router'
 const router = useRouter()
-/*setTimeout(() => {
+setTimeout(() => {
   router.push({ path: '/about' })
-}, 2500)*/
+}, 2800)
 </script>
 
 <style lang="scss" scoped></style>

@@ -12,10 +12,19 @@
 </template>
 <script></script>
 <style>
-html,
-body {
-  height: 100%;
-  margin: 0;
+#svgContainer {
+  max-width: 400px; /* limit max width */
+  margin: 2rem auto;
+  width: 100%; /* fill available space */
+}
+
+#svgContainer object,
+#svgContainer img {
+  width: 100%; /* scale SVG to container width */
+  height: auto; /* maintain aspect ratio */
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 body {
   display: flex;
@@ -34,17 +43,6 @@ main {
 h1 {
   font-size: 2.5rem;
   margin-bottom: 1.5rem;
-}
-#svgContainer {
-  max-width: 350px;
-  margin: 0 auto 2rem auto;
-}
-#svgContainer img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 h2 {
   font-size: 1.25rem;

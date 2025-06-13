@@ -118,7 +118,7 @@ export const useMoneyStore = defineStore('money', () => {
     } else console.log('Limit Reached (6) or Not Enough Cash')
   }
 
-  const ready = computed(() => displayCash.value > 1000 * prestigeLevel.value) // This line is a modified chatGPT line made to test a feature. I only understand it partially.
+  const ready = computed(() => displayCash.value > 1000 * (prestigeLevel.value + 1)) // This line is a modified chatGPT line made to test a feature. I only understand it partially.
   async function prestigeReady() {
     console.log('Ready')
     diceMulti.value = 1

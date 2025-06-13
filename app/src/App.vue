@@ -60,28 +60,37 @@ import { RouterLink, RouterView } from 'vue-router'
   background-color: #2563eb;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
+@media screen and (max-width: 768px) {
+  .dropdown {
+    left: auto;
+    right: 10px;
+    width: auto;
   }
 
-  nav {
+  .dropbtn {
+    border-radius: 10px;
+  }
+
+  .dropdown-content {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 180px;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    border: 1px solid #ddd;
+  }
+
+  .dropdown-content a {
+    width: 100%;
+    padding: 10px 16px;
     text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
+    border-bottom: 1px solid #eee;
+  }
 
-    padding: 1rem 0;
-    margin-top: 1rem;
+  .page-wrapper {
+    margin-top: 160px; /* extra space for the repositioned menu */
   }
 }
 </style>
