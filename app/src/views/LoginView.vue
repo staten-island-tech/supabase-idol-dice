@@ -4,12 +4,8 @@ const router = useRouter()
 import { ref } from 'vue'
 import { supabase } from '../components/icons/lib/supabaseClient'
 import { useAuthStore } from '../stores/authenticate'
-import { RouterLink, RouterView } from 'vue-router'
-//import { LoadingScreenAnimation } from '../app/public/LoadingScreenAnimation'
 import { useSavingStore } from '@/stores/saveCharts'
-import { useListStore } from '@/stores/updateCharts'
 const store2 = useSavingStore()
-const store3 = useListStore()
 let email = ref('')
 let password = ref('')
 const store = useAuthStore()
@@ -49,11 +45,7 @@ async function logOut() {
   } else {
     console.log('User signed out.')
     store.userData = null
-    location.reload()
   }
-}
-function testData() {
-  console.log(store.userData)
 }
 </script>
 
@@ -73,39 +65,63 @@ function testData() {
 
 <style>
 body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f5f8fa;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
-.dropbtn {
-  background-color: #b6cad4;
-  color: rgb(0, 0, 0);
-  padding: 7px;
-  font-size: 8px;
-  cursor: pointer;
-  display: flex;
-}
-.container {
-  display: flex;
-}
-h1 {
-  text-decoration: underline;
-  display: flex;
-}
+
 .inputContainer {
   display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 320px;
+  max-width: 90vw;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
+
+.inputContainer input {
+  padding: 0.6rem 0.8rem;
+  font-size: 1rem;
+  border: 1.8px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.3s;
+}
+
 .buttonContainer {
   display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  gap: 0.8rem;
 }
-label {
-  text-decoration: underline;
-  box-shadow: 8px solid silver;
-}
-input {
-  box-shadow: 8px solid silver;
-}
-button {
-  display: flex;
+
+.buttonContainer button {
+  flex: 1;
+  background-color: #3b82f6;
+  border: none;
+  color: white;
+  font-weight: 600;
+  padding: 0.8rem 0;
+  border-radius: 8px;
   cursor: pointer;
-  box-shadow: 8px solid rgb(156, 156, 193);
+  transition: background-color 0.3s;
+}
+@media (max-width: 480px) {
+  .inputContainer {
+    width: 90vw;
+    padding: 1.5rem;
+  }
+  .buttonContainer {
+    flex-direction: column;
+  }
+  .buttonContainer button {
+    width: 100%;
+  }
 }
 </style>

@@ -3,7 +3,7 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 <template>
   <div class="dropdown">
-    <button onclick="stuff()" class="dropbtn">Menu</button>
+    <button class="dropbtn">Menu</button>
     <div class="dropdown-content">
       <RouterLink to="/">Home</RouterLink>
       <RouterLink to="/about">Dice Gameplay</RouterLink>

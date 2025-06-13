@@ -150,7 +150,6 @@ export const useMoneyStore = defineStore('money', () => {
     buyDice,
     displayCash,
     displayRoll,
-    displayCash,
     diceMulti,
     ready,
     diceArray,
