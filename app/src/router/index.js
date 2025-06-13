@@ -17,16 +17,8 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue'),
       meta: {
-        requiresAuth: true }
-      
-    },
-    {
-      path: '/test',
-      name: 'test',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/TestingView.vue'),
+        requiresAuth: true,
+      },
     },
     {
       path: '/logtest',
@@ -59,7 +51,7 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../components/ProtectedFile.vue'),
-    }
+    },
   ],
 })
 
@@ -68,15 +60,15 @@ router.beforeEach((to, from, next) => {
     const store = useAuthStore()
     if (store.userData !== null) {
       // User is authenticated, proceed to the route
-      next();
+      next()
     } else {
       // User is not authenticated, redirect to login
-      next('/protection');
+      next('/protection')
     }
   } else {
     // Non-protected route, allow access
-    next();
+    next()
   }
-});
+})
 
 export default router
