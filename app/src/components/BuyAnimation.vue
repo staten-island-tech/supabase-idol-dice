@@ -1,8 +1,8 @@
 <template>
   <div id="svgContainer">
     <!--rip-->
-    <object type="image/svg+xml" data="/public/BuyAnimation.svg">
-      <img src="/public/BuyAnimation.svg" alt="An animation of a glowing dice." />
+    <object type="image/svg+xml" data="/public/BuyAnimation2.svg">
+      <img src="/public/BuyAnimation2.svg" alt="An animation of a glowing dice." />
     </object>
   </div>
 </template>
@@ -12,7 +12,7 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 setTimeout(() => {
   router.push({ path: '/about' })
-}, 8000)
+}, 2500)
 </script>
 
 <style lang="scss" scoped></style>

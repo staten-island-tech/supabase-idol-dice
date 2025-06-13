@@ -38,29 +38,29 @@ export const useMoneyStore = defineStore('money', () => {
   })()
 
   console.log(displayCash.value)
-  function sorter(number) {
-    if (number == 1) {
-      console.log('1')
-    }
-    if (number == 1) {
-      console.log('2')
-    }
-    if (number == 1) {
-      console.log('3')
-    }
-    if (number == 1) {
-      console.log('4')
-    }
-    if (number == 1) {
-      console.log('5')
-    }
-  }
   async function testClick() {
     let calcMoney = 0 //FOR EACH DICE STUFF IS HERE YOU BLIND BAT
     diceArray.value.forEach((dice) => {
       console.log(dice.img)
       let random = randomNumber(5)
-      sorter(random)
+      if (random == 1) {
+        dice.img = '/public/grande.jpg'
+      }
+      if (random == 2) {
+        dice.img = '/public/Rock.jpg'
+      }
+      if (random == 3) {
+        dice.img = '/public/gomez.webp'
+      }
+      if (random == 4) {
+        dice.img = '/public/jenner.webp'
+      }
+      if (random == 5) {
+        dice.img = '/public/messi.webp'
+      }
+      if (random == 6) {
+        dice.img = '/public/ronaldo.webp'
+      }
       console.log('Random number: ' + random)
       calcMoney += random * dice.baseValue
       console.log('Money times base: ' + calcMoney)
