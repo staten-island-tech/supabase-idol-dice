@@ -53,7 +53,6 @@ function testData() {
   console.log(store.userData)
 }
 
-
 //<LoginView/>
 </script>
 

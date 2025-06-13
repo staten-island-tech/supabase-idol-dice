@@ -45,11 +45,17 @@ async function logOut() {
   } else {
     console.log('User signed out.')
     store.userData = null
+    logged.value = false
   }
+}
+let logged = ref(false)
+if (store.userData != null) {
+  logged.value = true
 }
 </script>
 
 <template>
+  <h1>Logged In: {{ logged }}</h1>
   <div class="inputContainer">
     <label for="email"> Email: </label>
     <input type="email" id="email" v-model="email" />
