@@ -1,8 +1,8 @@
 <template>
   <div id="svgContainer">
     <!--rip-->
-    <object type="image/svg+xml" data="/public/PrestigeTest2.svg">
-      <img src="/public/PrestigeTest2.svg" alt="An animation showing the user prestiging." />
+    <object type="image/svg+xml" data="/PrestigeTest2.svg">
+      <img src="/PrestigeTest2.svg" alt="An animation showing the user prestiging." />
     </object>
   </div>
 </template>
