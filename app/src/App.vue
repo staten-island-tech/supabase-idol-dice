@@ -2,88 +2,62 @@
 import { RouterLink, RouterView } from 'vue-router'
 </script>
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Home (Export)</RouterLink>
-        <p>--This is where the login page will be--</p>
-
-        <RouterLink to="/about">Dice Testing (Protect)</RouterLink>
-        <p>
-          --Im testing the ability to export save data from the dice so it's levels and cash don't
-          reset--
-        </p>
-
-        <RouterLink to="/test">Supabase Testing (Import)</RouterLink>
-        <p>--Testing the ability to import data from a supabase table--</p>
-        <RouterLink to="/logtest">Supabase Login Test (Login)</RouterLink>
-        <p>--Testing the ability to log into an account--</p>
-      </nav>
-    </div>
-  </header>
   <div class="dropdown">
     <button onclick="stuff()" class="dropbtn">Menu</button>
     <div class="dropdown-content">
-      <a href="#">Home</a>
-      <a href="#">Store</a>
-      <a href="#">Play</a>
-      <a href="#">Prestige</a>
+      <RouterLink to="/">Home</RouterLink>
+      <RouterLink to="/about">Dice Gameplay</RouterLink>
+      <RouterLink to="/logtest">Login Page</RouterLink>
     </div>
   </div>
-  <RouterView />
+  <div class="page-wrapper">
+    <RouterView />
+  </div>
 </template>
 
 <style scoped>
 /*might need to fix css of dropdown-content and dropbtn. thinking of separating it*/
-.dropdown-content,
-.dropbtn {
+.page-wrapper {
+  margin-top: 120px; /* ← always leaves room for the menu */
+  padding: 20px;
+}
+.dropdown {
   position: fixed;
-  top: 10px;
-  left: 10px;
-  padding: 10px 15px;
-  background-color: #445d77;
+  top: 20px;
+  left: 20px;
+  width: 100vw;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.dropbtn {
+  background-color: #3b82f6;
   color: white;
-  border-radius: 10px;
+  padding: 10px 18px;
+  font-size: 16px;
+  border: none;
+  border-radius: 0 0 10px 10px;
   cursor: pointer;
-  width: 70px;
-  height: 40px;
-  font-size: 15px;
-  text-align: center;
-}
-header {
-  line-height: 1.5;
-  max-height: 100vh;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  z-index: 1001; /* Makes sure it stays above the dropdown */
+  position: relative;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
+.dropdown-content {
+  background-color: #ffffff;
   width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border-bottom: 1px solid #e5e5e5;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
 }
-
-nav a.router-link-exact-active {
-  color: magenta;
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
+.dropbtn:hover {
+  background-color: #2563eb;
 }
 
 @media (min-width: 1024px) {

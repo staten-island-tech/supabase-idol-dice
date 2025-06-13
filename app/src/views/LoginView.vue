@@ -58,7 +58,6 @@ function testData() {
 </script>
 
 <template>
-  <RouterLink to="/ThePrestige"></RouterLink>
   <div class="inputContainer">
     <label for="email"> Email: </label>
     <input type="email" id="email" v-model="email" />
@@ -69,18 +68,7 @@ function testData() {
     <button @click="createAccount()">Create</button>
     <button @click="signIn()">Login</button>
     <button @click="logOut()">Logout</button>
-    <button @click="testData()">User Data</button>
-    <button @click="store3.idHunter()">Id Hunt</button>
   </div>
-  <body>
-    <!--for some reason when I delete one of them, the other one also gets deleted...-->
-    <!-- <object type="image/svg+xml" data="/public/LoadingScreenAnimation.svg">
-      <img src="/public/LoadingScreenAnimation.svg" />
-    </object> -->
-    <object type="image/svg+xml" data="/public/BuyAnimation.svg">
-      <img src="/public/BuyAnimation.svg" />
-    </object>
-  </body>
 </template>
 
 <style>
