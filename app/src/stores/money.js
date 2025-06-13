@@ -44,22 +44,22 @@ export const useMoneyStore = defineStore('money', () => {
       console.log(dice.img)
       let random = randomNumber(5)
       if (random == 1) {
-        dice.img = '/public/grande.jpg'
+        dice.img = '/grande.jpg'
       }
       if (random == 2) {
-        dice.img = '/public/Rock.jpg'
+        dice.img = '/Rock.jpg'
       }
       if (random == 3) {
-        dice.img = '/public/gomez.webp'
+        dice.img = '/gomez.webp'
       }
       if (random == 4) {
-        dice.img = '/public/jenner.webp'
+        dice.img = '/jenner.webp'
       }
       if (random == 5) {
-        dice.img = '/public/messi.webp'
+        dice.img = '/messi.webp'
       }
       if (random == 6) {
-        dice.img = '/public/ronaldo.webp'
+        dice.img = '/ronaldo.webp'
       }
       console.log('Random number: ' + random)
       calcMoney += random * dice.baseValue
